@@ -1,0 +1,69 @@
+Class Automobile
+    Private Variables:
+        make          : String
+        model         : String
+        year          : Integer
+        price         : Double
+        mileage       : Double
+        vin           : String
+
+    Constructor Automobile()
+        make = ""
+        model = ""
+        year = 0
+        price = 0.0
+        mileage = 0.0
+        vin = ""
+
+    Constructor Automobile(make, model, year, price, mileage, vin)
+        this.make = make
+        this.model = model
+        this.year = year
+        this.price = price
+        this.mileage = mileage
+        this.vin = vin
+
+    Method setMake(make)
+        this.make = make
+
+    Method getMake()
+        return make
+
+    Method setModel(model)
+        this.model = model
+
+    Method getModel()
+        return model
+
+    Method setYear(year)
+        this.year = year
+
+    Method getYear()
+        return year
+
+    Method setPrice(price)
+        this.price = price
+
+    Method getPrice()
+        return price
+
+    Method setMileage(mileage)
+        this.mileage = mileage
+
+    Method getMileage()
+        return mileage
+
+    Method setVin(vin)
+        this.vin = vin
+
+    Method getVin()
+        return vin
+
+    Method displayInfo()
+        Print "Make: " + make
+        Print "Model: " + model
+        Print "Year: " + year
+        Print "Price: $" + price
+        Print "Mileage: " + mileage + " miles"
+        Print "VIN: " + vin
+End Class
