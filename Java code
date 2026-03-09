@@ -1,0 +1,107 @@
+package module8.AutomobileInventory;
+
+import java.util.ArrayList;
+
+public class Automobile {
+
+    private String make;
+    private String model;
+    private String color;
+    private int year;
+    private int mileage;
+
+    private static ArrayList<Automobile> inventory = new ArrayList<>();
+
+    // Default constructor
+    public Automobile() {
+        try {
+            this.make = "";
+            this.model = "";
+            this.color = "";
+            this.year = 0;
+            this.mileage = 0;
+        } catch (Exception e) {
+            System.out.println("Failed to create default automobile.");
+        }
+    }
+
+    // Parameterized constructor
+    public Automobile(String make, String model, String color, int year, int mileage) {
+        try {
+            this.make = make;
+            this.model = model;
+            this.color = color;
+            this.year = year;
+            this.mileage = mileage;
+        } catch (Exception e) {
+            System.out.println("Failed to create automobile with values.");
+        }
+    }
+
+    // Add a new vehicle object to inventory
+    public static String addVehicle(Automobile vehicle) {
+        try {
+            inventory.add(vehicle);
+            return "Vehicle successfully added.";
+        } catch (Exception e) {
+            return "Failed to add vehicle.";
+        }
+    }
+
+    // Optional overloaded add method
+    public static String addVehicle(String make, String model, String color, int year, int mileage) {
+        try {
+            Automobile vehicle = new Automobile(make, model, color, year, mileage);
+            inventory.add(vehicle);
+            return "Vehicle successfully added.";
+        } catch (Exception e) {
+            return "Failed to add vehicle.";
+        }
+    }
+
+    // List vehicle information
+    public static String[] listVehicles() {
+        try {
+            String[] vehicleList = new String[inventory.size()];
+
+            for (int i = 0; i < inventory.size(); i++) {
+                Automobile car = inventory.get(i);
+                vehicleList[i] = "Vehicle " + i + ": " +
+                        car.year + " " + car.make + " " + car.model +
+                        ", Color: " + car.color +
+                        ", Mileage: " + car.mileage;
+            }
+
+            return vehicleList;
+        } catch (Exception e) {
+            String[] errorMessage = { "Failed to list vehicles." };
+            return errorMessage;
+        }
+    }
+
+    // Remove a vehicle by index
+    public static String removeVehicle(int index) {
+        try {
+            inventory.remove(index);
+            return "Vehicle successfully removed.";
+        } catch (Exception e) {
+            return "Failed to remove vehicle.";
+        }
+    }
+
+    // Update vehicle attributes
+    public static String updateVehicle(int index, String make, String model, String color, int year, int mileage) {
+        try {
+            Automobile car = inventory.get(index);
+            car.make = make;
+            car.model = model;
+            car.color = color;
+            car.year = year;
+            car.mileage = mileage;
+
+            return "Vehicle successfully updated.";
+        } catch (Exception e) {
+            return "Failed to update vehicle.";
+        }
+    }
+}
