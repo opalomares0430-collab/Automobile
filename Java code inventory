@@ -1,0 +1,101 @@
+package module8.AutomobileInventory;
+
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class AutomobileInventory {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        try {
+            // 1. Call automobile class with parameterized constructor
+            Automobile firstVehicle = new Automobile("Toyota", "Camry", "Red", 2022, 15000);
+
+            // Add the parameterized object to inventory
+            System.out.println(Automobile.addVehicle(firstVehicle));
+
+            // 2. List the values and print them
+            System.out.println("\nCurrent Vehicle Inventory:");
+            printVehicleList();
+
+            // 3. Remove vehicle and print return value
+            System.out.println("\nRemoving vehicle...");
+            System.out.println(Automobile.removeVehicle(0));
+
+            // Show inventory after removal
+            System.out.println("\nVehicle Inventory After Removal:");
+            printVehicleList();
+
+            // 4. Add a new vehicle
+            System.out.println("\nAdding a new vehicle...");
+            System.out.println(Automobile.addVehicle("Honda", "Civic", "Blue", 2021, 20000));
+
+            // Call list method and print new vehicle info
+            System.out.println("\nVehicle Inventory After Adding New Vehicle:");
+            printVehicleList();
+
+            // 5. Update the vehicle
+            System.out.println("\nUpdating vehicle...");
+            System.out.println(Automobile.updateVehicle(0, "Honda", "Civic", "White", 2021, 18000));
+
+            // Print updated information
+            System.out.println("\nVehicle Inventory After Update:");
+            printVehicleList();
+
+            // 6. Ask user if they want to print to file
+            System.out.print("\nDo you want to print the information to a file? (Y or N): ");
+            String response = input.nextLine();
+
+            if (response.equalsIgnoreCase("Y")) {
+                printToFile();
+                System.out.println("Vehicle information was printed to C:\\Temp\\Autos.txt");
+            } else if (response.equalsIgnoreCase("N")) {
+                System.out.println("A file will not be printed.");
+            } else {
+                System.out.println("Invalid response. A file will not be printed.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("An error occurred in the main program.");
+        } finally {
+            input.close();
+        }
+    }
+
+    // Method to print vehicle list to console
+    public static void printVehicleList() {
+        try {
+            String[] vehicles = Automobile.listVehicles();
+
+            for (String vehicle : vehicles) {
+                System.out.println(vehicle);
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to print vehicle list.");
+        }
+    }
+
+    // Method to print vehicle information to file
+    public static void printToFile() {
+        try {
+            File folder = new File("C:\\Temp");
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+
+            PrintWriter writer = new PrintWriter("C:\\Temp\\Autos.txt");
+            String[] vehicles = Automobile.listVehicles();
+
+            for (String vehicle : vehicles) {
+                writer.println(vehicle);
+            }
+
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Failed to print vehicle information to file.");
+        }
+    }
+}
